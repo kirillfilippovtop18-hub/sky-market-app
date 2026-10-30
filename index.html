@@ -4,32 +4,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SKY MARKET</title>
+    <meta name="theme-color" content="#080816">
+    <meta name="description" content="SKY MARKET — демонстрационный каталог и портфолио.">
+    <title>SKY MARKET — Demo</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <header>
-        <h1><span class="logo-bolt">⚡</span> SKY MARKET</h1>
-        <p>Твоя демо-витрина</p>
+    <header class="header">
+        <a class="logo" href="#home">
+            <span class="logo-bolt">⚡</span>
+            SKY MARKET
+        </a>
+        <nav class="nav">
+            <a href="#home">Главная</a>
+            <a href="#catalog">Каталог</a>
+            <a href="#about">О проекте</a>
+        </nav>
+        <a class="header-button" href="#catalog">Смотреть каталог</a>
     </header>
 
     <main>
-        <input
-            type="text"
-            id="search"
-            placeholder="Поиск по каталогу..."
-        >
+        <section class="hero" id="home">
+            <div class="hero-glow"></div>
+            <div class="hero-content">
+                <span class="eyebrow">✦ DIGITAL SHOWCASE</span>
+                <h1>Добро пожаловать<br>в <span>SKY MARKET</span></h1>
+                <p>Современная демонстрационная витрина с неоновым дизайном и удобной навигацией.</p>
+                <a class="primary-button" href="#catalog">Открыть каталог <span>→</span></a>
+            </div>
+            <div class="hero-symbol">⚡</div>
+        </section>
 
-        <div id="categories"></div>
+        <section class="features">
+            <article class="feature">
+                <span>✦</span>
+                <h3>Современный дизайн</h3>
+                <p>Неоновые акценты и градиенты</p>
+            </article>
+            <article class="feature">
+                <span>⌕</span>
+                <h3>Удобный поиск</h3>
+                <p>Быстрая навигация по каталогу</p>
+            </article>
+            <article class="feature">
+                <span>▣</span>
+                <h3>Адаптивность</h3>
+                <p>Поддержка телефонов и компьютеров</p>
+            </article>
+        </section>
 
-        <div id="products"></div>
+        <section class="catalog section" id="catalog">
+            <div class="section-heading">
+                <span class="eyebrow">OUR COLLECTION</span>
+                <h2>Демонстрационный каталог</h2>
+                <p>Примеры карточек для знакомства с возможностями сайта.</p>
+            </div>
 
-        <section id="about">
-            <h2>О проекте</h2>
-            <p>Добро пожаловать в демонстрационный каталог SKY MARKET!</p>
+            <label class="search-box">
+                <span>⌕</span>
+                <input id="search" type="search" placeholder="Найти в каталоге..." autocomplete="off">
+            </label>
+
+            <div id="categories" class="categories"></div>
+            <div id="products" class="products"></div>
+            <p id="empty" class="empty" hidden>Ничего не найдено. Попробуй другой запрос.</p>
+        </section>
+
+        <section class="about section" id="about">
+            <span class="eyebrow">ABOUT US</span>
+            <h2>О проекте SKY MARKET</h2>
+            <p>Это учебная демонстрационная витрина, созданная для изучения веб-дизайна, HTML, CSS и JavaScript.</p>
+            <a href="#home" class="secondary-button">Вернуться наверх ↑</a>
         </section>
     </main>
+
+    <footer class="footer">
+        <a class="logo" href="#home"><span class="logo-bolt">⚡</span> SKY MARKET</a>
+        <p>Демонстрационный проект · 2026</p>
+    </footer>
 
     <script src="script.js"></script>
 </body>
