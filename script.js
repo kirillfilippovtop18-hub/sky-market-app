@@ -1,60 +1,53 @@
 
-const tg = window.Telegram?.WebApp;
-
-if (tg) {
-    tg.ready();
-    tg.expand();
-}
-
 const products = [
     {
         id: 1,
-        name: "Товар 1",
-        description: "Демонстрационный товар первой категории.",
+        name: "Демонстрационный товар 1",
         category: "Категория 1",
-        image: "https://placehold.co/600x400/263d65/ffffff?text=Product+1"
+        description: "Пример карточки с изображением и описанием.",
+        image: "https://placehold.co/600x400/19172f/d9b7ff?text=Demo+1"
     },
     {
         id: 2,
-        name: "Товар 2",
-        description: "Демонстрационный товар второй категории.",
-        category: "Категория 2",
-        image: "https://placehold.co/600x400/263d65/ffffff?text=Product+2"
+        name: "Демонстрационный товар 2",
+        category: "Категория 1",
+        description: "Пример элемента современного каталога.",
+        image: "https://placehold.co/600x400/19172f/00eaff?text=Demo+2"
     },
     {
         id: 3,
-        name: "Товар 3",
-        description: "Демонстрационный товар первой категории.",
-        category: "Категория 1",
-        image: "https://placehold.co/600x400/263d65/ffffff?text=Product+3"
+        name: "Демонстрационный товар 3",
+        category: "Категория 2",
+        description: "Демонстрация оформления карточки.",
+        image: "https://placehold.co/600x400/19172f/d9b7ff?text=Demo+3"
     },
     {
         id: 4,
-        name: "Товар 4",
-        description: "Демонстрационный товар третьей категории.",
-        category: "Категория 3",
-        image: "https://placehold.co/600x400/263d65/ffffff?text=Product+4"
+        name: "Демонстрационный товар 4",
+        category: "Категория 2",
+        description: "Пример изображения и краткой информации.",
+        image: "https://placehold.co/600x400/19172f/00eaff?text=Demo+4"
     },
     {
         id: 5,
-        name: "Товар 5",
-        description: "Демонстрационный товар второй категории.",
-        category: "Категория 2",
-        image: "https://placehold.co/600x400/263d65/ffffff?text=Product+5"
+        name: "Демонстрационный товар 5",
+        category: "Категория 3",
+        description: "Ещё один элемент демонстрационного каталога.",
+        image: "https://placehold.co/600x400/19172f/d9b7ff?text=Demo+5"
     },
     {
         id: 6,
-        name: "Товар 6",
-        description: "Демонстрационный товар третьей категории.",
+        name: "Демонстрационный товар 6",
         category: "Категория 3",
-        image: "https://placehold.co/600x400/263d65/ffffff?text=Product+6"
+        description: "Пример адаптивной карточки.",
+        image: "https://placehold.co/600x400/19172f/00eaff?text=Demo+6"
     }
 ];
 
-const productBox = document.getElementById("products");
+const categoriesElement = document.getElementById("categories");
+const productsElement = document.getElementById("products");
 const searchInput = document.getElementById("search");
-const categoryBox = document.getElementById("categories");
-const productCount = document.getElementById("product-count");
+const emptyElement = document.getElementById("empty");
 
 let selectedCategory = "Все";
 
@@ -64,11 +57,11 @@ const categories = [
 ];
 
 function renderCategories() {
-    categoryBox.replaceChildren();
+    categoriesElement.replaceChildren();
 
     categories.forEach(category => {
         const button = document.createElement("button");
-        button.className = "category-btn";
+        button.type = "button";
         button.textContent = category;
 
         if (category === selectedCategory) {
@@ -81,43 +74,36 @@ function renderCategories() {
             renderProducts();
         });
 
-        categoryBox.appendChild(button);
+        categoriesElement.appendChild(button);
     });
 }
 
 function renderProducts() {
-    productBox.replaceChildren();
+    const searchText = searchInput.value
+        .trim()
+        .toLowerCase();
 
-    const query = searchInput.value.trim().toLowerCase();
-
-    const filtered = products.filter(product => {
-        const matchesSearch =
-            product.name.toLowerCase().includes(query) ||
-            product.description.toLowerCase().includes(query);
-
+    const filteredProducts = products.filter(product => {
         const matchesCategory =
             selectedCategory === "Все" ||
             product.category === selectedCategory;
 
-        return matchesSearch && matchesCategory;
+        const matchesSearch =
+            product.name.toLowerCase().includes(searchText) ||
+            product.description.toLowerCase().includes(searchText) ||
+            product.category.toLowerCase().includes(searchText);
+
+        return matchesCategory && matchesSearch;
     });
 
-    productCount.textContent = `Найдено: ${filtered.length}`;
+    productsElement.replaceChildren();
+    emptyElement.hidden = filteredProducts.length > 0;
 
-    if (filtered.length === 0) {
-        const empty = document.createElement("p");
-        empty.className = "empty";
-        empty.textContent = "Ничего не найдено.";
-        productBox.appendChild(empty);
-        return;
-    }
-
-    filtered.forEach(product => {
+    filteredProducts.forEach(product => {
         const card = document.createElement("article");
-        card.className = "card";
+        card.className = "product";
 
         const image = document.createElement("img");
-        image.className = "product-image";
         image.src = product.image;
         image.alt = product.name;
         image.loading = "lazy";
@@ -128,11 +114,8 @@ function renderProducts() {
         const description = document.createElement("p");
         description.textContent = product.description;
 
-        const category = document.createElement("small");
-        category.textContent = product.category;
-
-        card.append(image, title, description, category);
-        productBox.appendChild(card);
+        card.append(image, title, description);
+        productsElement.appendChild(card);
     });
 }
 
@@ -141,4 +124,9 @@ searchInput.addEventListener("input", renderProducts);
 renderCategories();
 renderProducts();
 
-console.log("SKY MARKET загружен!");
+// Поддержка запуска внутри Telegram Mini App
+if (window.Telegram && window.Telegram.WebApp) {
+    const telegramApp = window.Telegram.WebApp;
+    telegramApp.ready();
+    telegramApp.expand();
+}
