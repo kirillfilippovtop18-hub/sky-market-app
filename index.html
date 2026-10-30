@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#101522">
+    <title>SKY MARKET</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+
+<body>
+    <header class="header">
+        <div class="logo">☁️ SKY MARKET</div>
+        <p>Добро пожаловать в наше приложение</p>
+    </header>
+
+    <main>
+        <div class="search-box">
+            <input
+                type="search"
+                id="search"
+                placeholder="🔎 Поиск товаров..."
+            >
+        </div>
+
+        <h2>Категории</h2>
+        <div id="categories" class="categories"></div>
+
+        <div class="section-title">
+            <h2>Каталог</h2>
+            <span id="product-count"></span>
+        </div>
+
+        <div id="products" class="products"></div>
+
+        <section class="about">
+            <h2>О проекте</h2>
+            <p>Добро пожаловать в SKY MARKET!</p>
+            <p>Здесь находится каталог и информация о проекте.</p>
+        </section>
+    </main>
+
+    <footer>
+        SKY MARKET © 2026
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
