@@ -7,11 +7,12 @@
 
 :root {
     --bg: #080816;
-    --panel: #121229;
+    --panel: #15152b;
     --purple: #9b5cff;
     --cyan: #00eaff;
     --text: #ffffff;
     --muted: #aaaac5;
+    --container: 1120px;
 }
 
 html {
@@ -43,21 +44,22 @@ button, input {
     position: sticky;
     top: 0;
     z-index: 10;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 20px;
-    padding: 18px 6%;
-    background: #080816eF;
+    gap: 24px;
+    padding: 17px max(5%, calc((100% - var(--container)) / 2));
+    background: #080816f2;
     backdrop-filter: blur(16px);
     border-bottom: 1px solid #8c42ff44;
 }
 
 .logo {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: 8px;
-    font-size: 21px;
+    font-size: 20px;
     font-weight: 900;
     letter-spacing: 2px;
     white-space: nowrap;
@@ -72,7 +74,9 @@ button, input {
 
 .nav {
     display: flex;
-    gap: 28px;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
 }
 
 .nav a {
@@ -111,8 +115,10 @@ button, input {
 
 .hero {
     position: relative;
-    min-height: 510px;
-    padding: 100px 8%;
+    width: min(100% - 40px, var(--container));
+    min-height: 470px;
+    margin: 0 auto;
+    padding: 85px 35px;
     display: flex;
     align-items: center;
     overflow: hidden;
@@ -121,7 +127,7 @@ button, input {
 .hero-content {
     position: relative;
     z-index: 2;
-    max-width: 650px;
+    max-width: 620px;
     animation: appear .8s ease both;
 }
 
@@ -134,7 +140,7 @@ button, input {
 
 .hero h1 {
     margin: 22px 0;
-    font-size: clamp(38px, 6vw, 68px);
+    font-size: clamp(38px, 6vw, 65px);
     line-height: 1.08;
 }
 
@@ -159,35 +165,40 @@ button, input {
 
 .hero-symbol {
     position: absolute;
-    right: 12%;
+    right: 8%;
     top: 50%;
     transform: translateY(-50%);
-    font-size: clamp(130px, 23vw, 280px);
+    font-size: clamp(120px, 20vw, 230px);
     color: #a45cff;
-    opacity: .75;
-    filter: drop-shadow(0 0 25px #8c42ff) drop-shadow(0 0 65px #00eaff55);
+    opacity: .45;
+    filter: drop-shadow(0 0 25px #8c42ff);
     animation: float 4s ease-in-out infinite;
+    pointer-events: none;
 }
 
 .hero-glow {
     position: absolute;
-    width: 350px;
-    height: 350px;
-    right: 10%;
+    width: 300px;
+    height: 300px;
+    right: 8%;
     top: 20%;
     border-radius: 50%;
     background: #813cff22;
     filter: blur(70px);
+    pointer-events: none;
 }
 
 .features {
+    width: min(100% - 40px, var(--container));
+    margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 18px;
-    padding: 25px 6%;
+    padding: 15px 0 35px;
 }
 
 .feature {
+    min-width: 0;
     padding: 25px;
     background: linear-gradient(145deg, #17172f, #101020);
     border: 1px solid #7134c955;
@@ -216,7 +227,9 @@ button, input {
 }
 
 .section {
-    padding: 85px 6%;
+    width: min(100% - 40px, var(--container));
+    margin: 0 auto;
+    padding: 75px 0;
 }
 
 .section-heading {
@@ -238,7 +251,7 @@ button, input {
     display: flex;
     align-items: center;
     gap: 12px;
-    max-width: 550px;
+    width: min(100%, 550px);
     margin: 0 auto 25px;
     padding: 0 17px;
     background: #15152b;
@@ -254,6 +267,7 @@ button, input {
 
 .search-box input {
     width: 100%;
+    min-width: 0;
     padding: 16px 0;
     background: transparent;
     border: 0;
@@ -293,11 +307,11 @@ button, input {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 22px;
-    max-width: 1200px;
-    margin: auto;
+    width: 100%;
 }
 
 .product {
+    min-width: 0;
     overflow: hidden;
     padding: 15px;
     border: 1px solid #7134c977;
@@ -308,7 +322,7 @@ button, input {
 }
 
 .product:hover {
-    transform: translateY(-6px);
+    transform: translateY(-5px);
     box-shadow: 0 0 25px #853cff55;
 }
 
@@ -324,6 +338,7 @@ button, input {
 .product h3 {
     margin: 15px 0 8px;
     color: #d9b7ff;
+    line-height: 1.4;
 }
 
 .product p {
@@ -339,6 +354,9 @@ button, input {
 }
 
 .about {
+    width: 100%;
+    max-width: none;
+    padding: 75px 20px;
     text-align: center;
     background: linear-gradient(120deg, #17102c88, #10233b88);
     border-top: 1px solid #7134c955;
@@ -363,7 +381,9 @@ button, input {
 }
 
 .footer {
-    padding: 30px 6%;
+    width: min(100% - 40px, var(--container));
+    margin: 0 auto;
+    padding: 30px 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -382,7 +402,7 @@ button, input {
 
 @keyframes float {
     0%, 100% { margin-top: 0; }
-    50% { margin-top: -18px; }
+    50% { margin-top: -12px; }
 }
 
 @keyframes appear {
@@ -393,22 +413,21 @@ button, input {
 @media (max-width: 850px) {
     .header {
         flex-wrap: wrap;
+        justify-content: center;
     }
 
     .nav {
         order: 3;
         width: 100%;
-        justify-content: center;
-        gap: 20px;
     }
 
     .hero {
-        min-height: 430px;
+        min-height: 420px;
     }
 
     .hero-symbol {
-        right: 4%;
-        opacity: .25;
+        right: 2%;
+        opacity: .2;
     }
 
     .products {
@@ -418,7 +437,8 @@ button, input {
 
 @media (max-width: 550px) {
     .header {
-        padding: 14px 5%;
+        padding: 14px 12px;
+        gap: 13px;
     }
 
     .logo {
@@ -436,42 +456,48 @@ button, input {
     }
 
     .hero {
-        padding: 75px 7%;
-        min-height: 420px;
+        width: calc(100% - 28px);
+        padding: 65px 12px;
+        min-height: 400px;
     }
 
     .hero-symbol {
-        right: -10%;
-        font-size: 160px;
+        right: -30px;
+        font-size: 140px;
+        opacity: .16;
     }
 
     .features {
+        width: calc(100% - 28px);
         grid-template-columns: 1fr;
-        padding: 15px 5%;
+        padding: 10px 0 25px;
     }
 
     .section {
-        padding: 65px 5%;
+        width: calc(100% - 28px);
+        padding: 55px 0;
     }
 
     .products {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 12px;
+        grid-template-columns: 1fr;
+        gap: 16px;
     }
 
     .product {
-        padding: 10px;
+        padding: 12px;
     }
 
     .product h3 {
-        font-size: 15px;
+        font-size: 16px;
     }
 
-    .product p {
-        font-size: 12px;
+    .about {
+        width: 100%;
+        padding: 55px 18px;
     }
 
     .footer {
+        width: calc(100% - 28px);
         flex-direction: column;
         text-align: center;
     }
